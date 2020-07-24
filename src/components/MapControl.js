@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withFirestore, isLoaded } from 'react-redux-firebase';
 import { useSelector } from 'react-redux'
+import NewImage from './NewImage'
+import ImageList from './ImageList'
+import ImageDetail from './ImageDetail'
+import EditImage from './EditImage'
 import firebase from '../firebase'
-import * as a from './../actions';
 
 function MapControl(){
   let currentlyVisibleState = null
@@ -43,7 +46,7 @@ function MapControl(){
                               setEditing={setEditing} />
       buttonText = "Return To Gallery"
     } else if (visibleForm === true) {
-      currentlyVisibleState = <NewImageForm
+      currentlyVisibleState = <NewImage
                               setForm={setForm}
                               visibleForm={visibleForm} />
       buttonText = "View Images"
