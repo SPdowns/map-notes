@@ -27,8 +27,7 @@ function ImageDetail(props) {
   )
   return(
     <React.Fragment>
-      <h1>Test</h1>
-
+      <h1>{image.imageName}</h1>
       <button onClick={ () => setEditing(!editing)}>Edit Image</button>
       <button onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
     </React.Fragment>

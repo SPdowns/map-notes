@@ -1,3 +1,5 @@
+## RESEARCH FOR IMAGE UPLOAD from 3:15-4:40pm, 7/24, will implement later in day
+
 # **Map Notes**
 
 #### Author: **Daniel Merys**
@@ -63,3 +65,4 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 This software is licensed under the MIT license.
 
 Copyright © 2020 **_Daniel Merys_**
+
