@@ -17,7 +17,8 @@ function ImageList(props) {
           return <Image
           whenImageClicked = {setSelectedImage}
           imageName={image.imageName}
-          id={image.id}/>
+          id={image.id}
+          key={image.id}/>
         })}
       </React.Fragment>
     )
