@@ -23,7 +23,7 @@ function ImageDetail(props) {
   }
 
   const image=useSelector(
-    ({ firestore: { data } }) => data.images && data.images(selectedImage)
+    ({ firestore: { data } }) => data.images && data.images[selectedImage]
   )
   return(
     <React.Fragment>
