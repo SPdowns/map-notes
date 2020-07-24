@@ -49,6 +49,7 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 * Firebase/Firestore
 * Semantic UI
 * React-Image-Annotation
+* React-Modal
 * Git and GitHub
 
 ### Specs
