@@ -26,13 +26,13 @@ function NewImage(props){
         setError("Error - Please upload an image file")
       }
     }
-  }
+  };
 
   const handleUpload = () => {
     if (image) {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       uploadTask.on(
-        'state_changed',
+        'onClick',
         snapshot => {
           const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -70,10 +70,11 @@ function NewImage(props){
       }
     );
   }
+
   return(
     <React.Fragment>
       <div>
-        <form onSubmit = {addImageToFirestore, handleUpload}>
+        <form onSubmit = {addImageToFirestore} onClick={handleUpload}>
           <input
             type='text'
             name='imageName'
