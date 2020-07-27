@@ -10,6 +10,7 @@ function ImageList(props) {
   ]);
   const images = useSelector(state => state.firestore.ordered.images);
   if(isLoaded(images)){
+    console.log(images)
     const {setSelectedImage, selectedImage} = props
     return(
       <React.Fragment>

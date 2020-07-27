@@ -1,97 +1,52 @@
-import React, { useState } from 'react';
-import { storage } from '../firebase'
+import React, { useState, useEffect } from 'react';
+import { storage, firebase } from '../firebase'
 import PropTypes from 'prop-types';
 import { useFirestore } from 'react-redux-firebase';
 
 
 function NewImage(props){
   const {setForm, visibleForm} = props;
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState("")
+  // const [image, setImage] = useState([]);
+  const [fileUrl, setFileUrl] = useState(null);
   const firestore = useFirestore();
 
-  const handleChange = e => {
-    const file = e.target.files[0];
-    
-    if (file) {
-      const fileType = file["type"];
-      const validImageTypes = ["image/jpeg", "image/png"];
-      if (validImageTypes.includes(fileType)) {
-        setError("")
-        setImage(file);
-      } else {
-        console.log("error");
-        setError("Error - Please upload an image file")
-      }
-    }
+  const onFileChange = async (event) => {
+    const file = event.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
   };
 
-  const handleUpload = () => {
-    if (image) {
-      const uploadTask = storage.ref(`images/${image.name}`).put(image);
-      uploadTask.on(
-        'onClick',
-        snapshot => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setProgress(progress);
-        },
-        error => {
-          console.log(error);
-          setError(error);
-        },
-        () => {
-          storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadUrl()
-          .then(url => {
-            console.log(url);
-            setUrl(url);
-            setProgress(0);
-          });
-        }
-      );
-    } else {
-      setError('Error - Please choose an image to upload');
-    }
-  };
-
-  function addImageToFirestore(event) {
+  const whenSubmitClicked = async (event) => {
     event.preventDefault();
+    console.log(fileUrl)
     setForm(!visibleForm);
-    return firestore.collection('images').add(
-      {
-        imageName: event.target.imageName.value,
-        // imageURL: event.target.imageURL.value
-      }
-    );
-  }
+    const imageName = event.target.imageName.value;
+    if (!fileUrl) {
+      return;
+    }
+    await firestore.collection('images').doc(imageName).set({
+      imageName: imageName,
+      imageURL: fileUrl,
+    });
+  };
 
   return(
     <React.Fragment>
       <div>
-        <form onSubmit = {addImageToFirestore} onClick={handleUpload}>
+        <form onSubmit={whenSubmitClicked}>
           <input
             type='text'
             name='imageName'
             placeholder='Image Name' />
-          <input type='file' onChange={handleChange} />
+          <input 
+            type='file'
+            name='imageURL'
+            onChange={onFileChange} />
           <button type='submit'>Add Image</button>
         </form>
       </div>
-      <div>
-        <p>{error}</p>
-        {progress > 0 ? <progress value={progress} max='100' /> : ""}
-      </div>
-      {url ? (
-        <img src={url} alt='Uploaded image' />
-      ) : (
-        <img src='https://i.redd.it/ehb1ckmfg2d51.jpg'/>
-      )}
     </React.Fragment>
   );
 }
