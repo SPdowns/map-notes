@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withFirestore, isLoaded, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
@@ -6,6 +6,8 @@ import 'firebase/firestore';
 
 function ImageDetail(props) {
   const { setSelectedImage, selectedImage, editing, setEditing } = props
+  const [annotations, setAnnotations] = useState([])
+  const [annotation, setAnnotation] = useState({})
   console.log(selectedImage)
   const firestore = useFirestore();
   useFirestoreConnect([
@@ -28,7 +30,7 @@ function ImageDetail(props) {
   return(
     <React.Fragment>
       <h1>{image.imageName}</h1>
-      <img width="100" height="100" src={image.imageURL} />
+      <img src={image.imageURL} />
       <button onClick={ () => setEditing(!editing)}>Edit Image</button>
       <button onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
     </React.Fragment>
