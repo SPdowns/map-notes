@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withFirestore, isLoaded, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import 'firebase/firestore';
+import { getAnnotationsFromFirebase, saveAnnotationToStore } from './firebase_annotation_queries'
 
 function ImageDetail(props) {
   const { setSelectedImage, selectedImage, editing, setEditing } = props
-  const [annotations, setAnnotations] = useState([])
-  const [annotation, setAnnotation] = useState({})
   console.log(selectedImage)
   const firestore = useFirestore();
+  // const [annotations, setAnnotations] = useState(getAnnotationsFromFirebase(imageId));
+  // const [annotation, setAnnotation] = useState({})
+
   useFirestoreConnect([
     {
       collection: 'images',
       doc: selectedImage
     }
   ]);
+
+  // onChangeAnnotation = (annotation) => {
+  //   setAnnotation({ annotation })
+  // }
+
+  // onCreateAnnotation = (annotation) => {
+  //   const { geometry, data } = annotation
+  //   const  { imageId } =  selectedImage
+
+  //   saveAnnotationToStore(annotation, imageId)
+
+
+  // }
+
+
 
   const handleDeletingImage = (selectedImage) => {
     firestore.delete({collection:
@@ -24,16 +41,17 @@ function ImageDetail(props) {
     setSelectedImage(null)
   }
 
-  const image=useSelector(
+  const image = useSelector(
     ({ firestore: { data } }) => data.images && data.images[selectedImage]
   )
+
   return(
-    <React.Fragment>
+    <Fragment>
       <h1>{image.imageName}</h1>
       <img src={image.imageURL} />
       <button onClick={ () => setEditing(!editing)}>Edit Image</button>
       <button onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
-    </React.Fragment>
+    </Fragment>
   );
 }
 

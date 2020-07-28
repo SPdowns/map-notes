@@ -26,7 +26,7 @@ function NewImage(props){
     if (!fileUrl) {
       return;
     }
-    await firestore.collection('images').doc(imageName).set({
+    await firestore.collection('images').add({
       imageName: imageName,
       imageURL: fileUrl,
     });
