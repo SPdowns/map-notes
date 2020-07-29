@@ -59,7 +59,7 @@ function ImageDetail(props) {
     <Fragment>
       <h1>{image.imageName}</h1>
       <div class='ui center aligned container'>
-        <img class='ui huge image' width='1000' height='1000' src={image.imageURL} />
+        <img class='ui huge image' src={image.imageURL} />
         <button class='ui button' onClick={ () => setEditing(!editing)}>Edit Image</button>
         <button class='ui button' onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
       </div>
