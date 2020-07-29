@@ -22,15 +22,23 @@ function ImageDetail(props) {
   // onChangeAnnotation = (annotation) => {
   //     setAnnotation({ annotation })
   //   }
-    
-  //   onCreateAnnotation = (annotation) => {
-  //       const { geometry, data } = annotation
-  //       const  { image } =  selectedImage
+  
+  onCreateAnnotation = (annotation) => {
+    const { geometry, data } = annotation;
+    const { image } =  selectedImage;
+    setAnnotations(annotations.push(annotation));
+    db.collection('images').doc(image).update({
+      'annotations': annotations
+    })
+    .then(function() {
+      console.log('Document Updated Successfully')
+    });
       
-  //       saveAnnotationToFirebase(annotation, image)
+
+      saveAnnotationToFirebase(annotation, image)
       
       
-  //     }
+      }
       
       
       

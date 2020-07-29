@@ -29,6 +29,7 @@ function NewImage(props){
     await firestore.collection('images').add({
       imageName: imageName,
       imageURL: fileUrl,
+      annotations: []
     });
   };
 
