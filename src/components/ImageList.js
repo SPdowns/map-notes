@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
-import Image from './Image';
+import UserImage from './UserImage';
 import { Container, Divider } from 'semantic-ui-react';
 
 function ImageList(props) {
@@ -17,9 +17,10 @@ function ImageList(props) {
       <React.Fragment>
         <div class='ui center aligned container'>
         {images.map((image) => {
-          return <Image
+          return <UserImage
           whenImageClicked = {setSelectedImage}
           imageName={image.imageName}
+          imageUrl={image.imageURL}
           id={image.id}
           key={image.id}/>
         })}
