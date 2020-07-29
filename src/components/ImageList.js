@@ -15,6 +15,7 @@ function ImageList(props) {
     const {setSelectedImage, selectedImage} = props
     return(
       <React.Fragment>
+        <div class='ui center aligned container'>
         {images.map((image) => {
           return <Image
           whenImageClicked = {setSelectedImage}
@@ -22,6 +23,7 @@ function ImageList(props) {
           id={image.id}
           key={image.id}/>
         })}
+        </div>
       </React.Fragment>
     )
   } else {

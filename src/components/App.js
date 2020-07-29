@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './Header';
+import AppHeader from './AppHeader';
 import MapControl from './MapControl';
 import Signin from './Signin';
 import firebase from '../firebase';
@@ -10,7 +10,7 @@ import 'firebase/auth';
 function App() {
   return (
    <Router>
-     <Header />
+     <AppHeader />
      <Switch>
        <Route path='/signin'>
          <Signin />
