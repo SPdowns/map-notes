@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withFirestore, isLoaded, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import 'firebase/firestore';
-import { Button, Divider, Image } from 'semantic-ui-react';
+import { Button, Divider, Image, Grid } from 'semantic-ui-react';
 // import { getAnnotationsFromFirebase, saveAnnotationToFirebase } from './FirebaseAnnotationQueries'
 
 function ImageDetail(props) {
@@ -60,15 +60,23 @@ function ImageDetail(props) {
       <h1>{image.imageName}</h1>
       <div class='ui center aligned container'>
         <img class='ui huge image' src={image.imageURL} />
-        <button class='ui fade animated button, ui basic button' onClick={ () => setEditing(!editing)}>
-          <div class='visible content'>Edit Image</div>
-          <div class='hidden content'>Change Name</div>
-        </button>
-        <button class='ui red basic button, ui fade animated button' onClick={ () => handleDeletingImage(selectedImage)}>
-          <div class='visible content'>Delete Image</div>
-          <div class='hidden content'>Are you sure?</div>
-        </button>
+        <br/>
+        <div class='ui grid'>
+          <div class='eight wide column'>
+            <button class='ui fade animated button, ui basic button' onClick={ () => setEditing(!editing)}>
+              <div class='visible content'>Edit Image</div>
+              <div class='hidden content'>Change Name</div>
+            </button>
+          </div>
+          <div class='eight wide column'>
+            <button class='ui red basic button, ui fade animated button' onClick={ () => handleDeletingImage(selectedImage)}>
+              <div class='visible content'>Delete Image</div>
+              <div class='hidden content'>Are you sure?</div>
+            </button>
+          </div>
+        </div>
       </div>
+      <br/>
     </Fragment>
   );
 }

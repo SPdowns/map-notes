@@ -43,7 +43,7 @@ function NewImage(props){
               type='text'
               name='imageName'
               placeholder='Image Name' />
-            </div>
+          </div>
           <input 
             type='file'
             name='imageURL'
