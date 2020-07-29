@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import Image from './Image';
+import { Container, Divider } from 'semantic-ui-react';
 
 function ImageList(props) {
   useFirestoreConnect([

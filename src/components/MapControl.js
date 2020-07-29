@@ -8,6 +8,7 @@ import ImageList from './ImageList'
 import ImageDetail from './ImageDetail'
 import EditImage from './EditImage'
 import firebase from '../firebase'
+import { Button } from 'semantic-ui-react';
 
 function MapControl(){
   let currentlyVisibleState = null
@@ -59,7 +60,7 @@ function MapControl(){
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={ () => returnToGallery() }>{buttonText}</button>
+        <button class='ui primary button' onClick={ () => returnToGallery() }>{buttonText}</button>
       </React.Fragment>
     )
   // } else {
