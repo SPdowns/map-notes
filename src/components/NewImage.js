@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { storage, firebase } from '../firebase'
 import PropTypes from 'prop-types';
 import { useFirestore } from 'react-redux-firebase';
+import { Container, Input } from 'semantic-ui-react';
 
 
 function NewImage(props){
@@ -35,17 +36,19 @@ function NewImage(props){
 
   return(
     <React.Fragment>
-      <div>
+      <div class='ui center aligned container'>
         <form onSubmit={whenSubmitClicked}>
-          <input
-            type='text'
-            name='imageName'
-            placeholder='Image Name' />
+          <div class='ui focus input'>
+            <input
+              type='text'
+              name='imageName'
+              placeholder='Image Name' />
+            </div>
           <input 
             type='file'
             name='imageURL'
             onChange={onFileChange} />
-          <button type='submit'>Add Image</button>
+          <button class='ui button' type='submit'>Add Image</button>
         </form>
       </div>
     </React.Fragment>

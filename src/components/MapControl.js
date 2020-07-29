@@ -60,7 +60,9 @@ function MapControl(){
     return(
       <React.Fragment>
         {currentlyVisibleState}
-        <button class='ui primary button' onClick={ () => returnToGallery() }>{buttonText}</button>
+        <div class='ui center aligned container'>
+          <button class='ui primary button' onClick={ () => returnToGallery() }>{buttonText}</button>
+        </div>
       </React.Fragment>
     )
   // } else {

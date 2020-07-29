@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withFirestore, isLoaded, useFirestore, useFirestoreConnect } from 'react-redux-firebase';
 import 'firebase/firestore';
+import { Button, Divider, Image } from 'semantic-ui-react';
 // import { getAnnotationsFromFirebase, saveAnnotationToFirebase } from './FirebaseAnnotationQueries'
 
 function ImageDetail(props) {
@@ -57,9 +58,11 @@ function ImageDetail(props) {
   return(
     <Fragment>
       <h1>{image.imageName}</h1>
-      <img width='1000' height='1000' src={image.imageURL} />
-      <button onClick={ () => setEditing(!editing)}>Edit Image</button>
-      <button onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
+      <div class='ui center aligned container'>
+        <img class='ui huge image' width='1000' height='1000' src={image.imageURL} />
+        <button class='ui button' onClick={ () => setEditing(!editing)}>Edit Image</button>
+        <button class='ui button' onClick={ () => handleDeletingImage(selectedImage)}>Delete Image</button>
+      </div>
     </Fragment>
   );
 }
