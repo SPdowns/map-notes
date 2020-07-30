@@ -8,6 +8,16 @@ import 'firebase/auth';
 
 
 function App() {
+  // firebase.auth().onAuthStateChanged(function(user) {
+  //   if (user) {
+  //     var email = user.email;
+  //     var uid = user.id;
+  //     console.log(email);
+  //     console.log(uid)
+  //   } else {
+  //   }
+  // })
+
   return (
    <Router>
      <AppHeader />
